@@ -2,8 +2,11 @@
 import { Component, OnInit } from '@angular/core';
 // o OnInit é uma interface que pode ser utilizada na class
 
+//listas de arquivos do projeto
+import { Task } from './shared/task.model';
+
 //para fazer simulação de array, será apagado
-const TASKS: Array<any> = [
+const TASKS: Array<Task> = [
     { id: 1, title: 'Fazer tarefa 1'},
     { id: 2, title: 'Fazer tarefa 2'},
     { id: 3, title: 'Fazer tarefa 3'},
