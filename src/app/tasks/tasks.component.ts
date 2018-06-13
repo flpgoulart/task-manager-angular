@@ -4,34 +4,27 @@ import { Component, OnInit } from '@angular/core';
 
 //listas de arquivos do projeto
 import { Task } from './shared/task.model';
-
-//para fazer simulação de array, será apagado
-const TASKS: Array<Task> = [
-    { id: 1, title: 'Fazer tarefa 1'},
-    { id: 2, title: 'Fazer tarefa 2'},
-    { id: 3, title: 'Fazer tarefa 3'},
-    { id: 4, title: 'Fazer tarefa 4'},
-    { id: 5, title: 'Fazer tarefa 5'},
-    { id: 6, title: 'Fazer tarefa 6'},
-    { id: 7, title: 'Fazer tarefa 7'},
-    { id: 8, title: 'Fazer tarefa 8'},
-    { id: 9, title: 'Fazer tarefa 9'}
-];
+import { TaskService } from "./shared/task.service";
 
 @Component({
     selector: 'tasks',
-    templateUrl: './tasks.component.html'
+    templateUrl: './tasks.component.html',
+    providers: [
+        //poderia ser declarado apenas assim "TaskService", mas pelo efeito didatico foi incluido completo
+        { provide: TaskService, useClass: TaskService }
+    ]
 })
 
 export class TasksComponent implements OnInit {
-    public tasks;
+    public tasks: Array<Task>;
     public selectedTask: Task;
 
-    public constructor(){
+    // o type script permite que tenha uma propriedade criada dentro do método construtor
+    public constructor(private taskService: TaskService){
     }
 
     public ngOnInit(){
-        this.tasks = TASKS;
+        this.tasks = this.taskService.getTasks();
     }
 
     // recebe um parametro do tipo Task e não retorna nada
