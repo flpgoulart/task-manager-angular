@@ -20,8 +20,8 @@ export class TasksComponent implements OnInit {
     public selectedTask: Task;
 
     // o type script permite que tenha uma propriedade criada dentro do método construtor
-    public constructor(private taskService: TaskService){
-    }
+    // quando eu passo no método construtor uma classe como tipo de parametro, o Angular entendi como uma dependência e procura um provider para isso
+    public constructor(private taskService: TaskService){ }
 
     public ngOnInit(){
         this.tasks = this.taskService.getTasks();
