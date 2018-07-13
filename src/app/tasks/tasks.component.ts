@@ -24,7 +24,12 @@ export class TasksComponent implements OnInit {
     public constructor(private taskService: TaskService){ }
 
     public ngOnInit(){
-        this.tasks = this.taskService.getTasks();
+        this.taskService.getTasks()
+            //ao invês de utilizar entre () do then a "function(tasks)", foi utilizado o 
+            //arrow function "(tasks) =>" com os parametros (ou não) e o "=>" indica o bloco que será executado
+            .then((tasks) => this.tasks = tasks)
+            //quando usar apenas 1 linha, pode passar direto o comando, sem a {}
+            .catch((error_msg) => alert(error_msg));
     }
 
     // recebe um parametro do tipo Task e não retorna nada
