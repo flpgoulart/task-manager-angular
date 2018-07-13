@@ -27,7 +27,7 @@ export class TasksComponent implements OnInit {
         this.taskService.getTasks()
             //ao invês de utilizar entre () do then a "function(tasks)", foi utilizado o 
             //arrow function "(tasks) =>" com os parametros (ou não) e o "=>" indica o bloco que será executado
-            .then((tasks) => this.tasks = tasks)
+            //.then((tasks) => this.tasks = tasks)
             //quando usar apenas 1 linha, pode passar direto o comando, sem a {}
             .catch((error_msg) => alert(error_msg));
     }
