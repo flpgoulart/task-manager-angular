@@ -9,6 +9,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { TaskDetailComponent } from './tasks/task-detail/task-detail.component';
+import { TaskService } from "./tasks/shared/task.service";
 
 const ROUTES = RouterModule.forRoot([
   //para cada requisição do dominio.com/***  ele gera uma nova rota. 
@@ -41,7 +42,9 @@ const ROUTES = RouterModule.forRoot([
     HttpModule,
     ROUTES
   ],
-  providers: [],
+  providers: [
+    TaskService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

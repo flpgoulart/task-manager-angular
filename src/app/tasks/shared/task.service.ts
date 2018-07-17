@@ -19,7 +19,7 @@ const TASKS: Array<Task> = [
 @Injectable()
 
 export class TaskService{
-    public getTasks(): Promise<{}>{
+    public getTasks(): Promise<any>{
         
         let promise = new Promise((resolve, reject) => {
             
@@ -33,5 +33,9 @@ export class TaskService{
         })
 
         return promise;
+    }
+
+    public getImportantTasks(): Promise<any>{
+        return Promise.resolve(TASKS.slice(0,3));
     }
 }
