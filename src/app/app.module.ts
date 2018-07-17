@@ -14,6 +14,10 @@ import { TaskService } from "./tasks/shared/task.service";
 const ROUTES = RouterModule.forRoot([
   //para cada requisição do dominio.com/***  ele gera uma nova rota. 
   {
+    path: 'tasks/:id',
+    component: TaskDetailComponent
+  },
+  {
     path: 'dashboard',
     component: DashboardComponent
   },
