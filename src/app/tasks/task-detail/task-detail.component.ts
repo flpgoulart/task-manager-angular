@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 // ActivatedRoute dá detalhes ao que se está acessando pelo usuário
 // Params é para coletar os dados transferidos pela URL
 import { ActivatedRoute, Params } from "@angular/router";
+import { Location } from "@angular/common";
 // serve para implementar no route o método switchMap
 import "rxjs/add/operator/switchMap";
 
@@ -20,10 +21,10 @@ export class TaskDetailComponent implements OnInit{
 
     public constructor(
         private taskService: TaskService,
-        private route: ActivatedRoute
-    ) {
-         
-    }
+        private route: ActivatedRoute,
+        private location: Location
+    ) { }
+
 
     public ngOnInit(){
         this.route.params
@@ -32,5 +33,9 @@ export class TaskDetailComponent implements OnInit{
             .switchMap((params: Params) => this.taskService.getTask(+params['id']))
             //o subscribe sempre precisa estar presente
             .subscribe(task => this.task = task)
+    }
+
+    public goBack() {
+        this.location.back();
     }
 }
