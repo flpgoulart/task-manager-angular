@@ -1,6 +1,6 @@
 // como prática, indica importar sempre o Component em primeiro lugar
 //o Input permite a troca de variáveis dentro do HTML, ou seja, passagem de param de um modelo para outro
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 // ActivatedRoute dá detalhes ao que se está acessando pelo usuário
 // Params é para coletar os dados transferidos pela URL
 import { ActivatedRoute, Params } from "@angular/router";
@@ -16,7 +16,7 @@ import { TaskService } from "../shared/task.service";
 })
 
 export class TaskDetailComponent implements OnInit{
-    @Input() public task: Task;
+    public task: Task;
 
     public constructor(
         private taskService: TaskService,
