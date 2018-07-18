@@ -1,3 +1,4 @@
+import { Http } from "@angular/http";
 // esse decorator, avisa ao angular que talvez o serviço dependa que algum código seja adicionado
 import { Injectable } from "@angular/core";
 
@@ -19,6 +20,9 @@ const TASKS: Array<Task> = [
 @Injectable()
 
 export class TaskService{
+
+    public constructor(private http: Http) {}
+
     public getTasks(): Promise<any>{
         
         let promise = new Promise((resolve, reject) => {
