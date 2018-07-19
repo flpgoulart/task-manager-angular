@@ -17,11 +17,14 @@ import { TaskService } from "./shared/task.service";
 
 export class TasksComponent implements OnInit {
     public tasks: Array<Task>;
-    public selectedTask: Task;
+    public newTask: Task;
+    // public selectedTask: Task;
 
     // o type script permite que tenha uma propriedade criada dentro do método construtor
     // quando eu passo no método construtor uma classe como tipo de parametro, o Angular entendi como uma dependência e procura um provider para isso
-    public constructor(private taskService: TaskService){ }
+    public constructor(private taskService: TaskService){ 
+        this.newTask = new Task(null, '');
+    }
 
     public ngOnInit(){
         this.taskService.getTasks()
@@ -31,8 +34,27 @@ export class TasksComponent implements OnInit {
             )
     }
 
-    // recebe um parametro do tipo Task e não retorna nada
-    public onSelect(task: Task): void {
-        this.selectedTask = task;
+    public createTask(){
+        //este comando serve para atualizar o titulo, removendo os campos em branco 
+        this.newTask.title = this.newTask.title.trim();
+
+        if (!this.newTask.title) {
+            alert("A tarefa deve ter um título!")
+        } else {
+            this.taskService.createTask(this.newTask)
+                .subscribe(
+                    (task) => {
+                        this.tasks.push(task);
+                        this.newTask = new Task(null, '');
+                    },
+                    () => alert("Ocorreu um erro no servidor, tente mais tarde.")
+                )
+        }
+
     }
+
+    // recebe um parametro do tipo Task e não retorna nada
+    // public onSelect(task: Task): void {
+    //     this.selectedTask = task;
+    // }
 }
