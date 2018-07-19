@@ -32,7 +32,10 @@ export class TaskDetailComponent implements OnInit{
         // o switchMap ele é inteligente o suficiente para tratar várias chamadas de requisições e entregar somente a ultima para o subscribe retornar
             .switchMap((params: Params) => this.taskService.getTask(+params['id']))
             //o subscribe sempre precisa estar presente
-            .subscribe(task => this.task = task)
+            .subscribe(
+                task => this.task = task,
+                error => alert("Ocorreu um erro no servidor, tente mais tarde!")
+            )
     }
 
     public goBack() {
