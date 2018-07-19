@@ -30,7 +30,7 @@ export class TaskDetailComponent implements OnInit{
         this.route.params
         // no caso do subscribe é por causa do Observable, identico ao Promise
         // o switchMap ele é inteligente o suficiente para tratar várias chamadas de requisições e entregar somente a ultima para o subscribe retornar
-            .switchMap((params: Params) => this.taskService.getTask(+params['id']))
+            .switchMap((params: Params) => this.taskService.getById(+params['id']))
             //o subscribe sempre precisa estar presente
             .subscribe(
                 task => this.task = task,
@@ -46,7 +46,7 @@ export class TaskDetailComponent implements OnInit{
         if(!this.task.title){
             alert("A tarefa deve ter um título")
         } else {
-            this.taskService.updateTask(this.task)
+            this.taskService.update(this.task)
                 .subscribe(
                     () => alert("Tarefa atualizada com sucesso!"),
                     () => alert("Ocorreu um erro no servidor, tente mais tarde!")
