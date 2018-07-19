@@ -54,7 +54,15 @@ export class TaskService{
         return this.http.put(url, body, { headers: headers })
             .catch(this.handleErrors)
             .map(() => task)
+    }
 
+    public deleteTask(id: number): Observable<null> {
+        let url = `${this.tasksUrl}/${id}`;
+        let headers = new Headers({'Content-type': 'application/json'});
+
+        return this.http.delete(url, { headers: headers })
+            .catch(this.handleErrors)
+            .map(() => null)
     }
 
     private handleErrors(error: Response){

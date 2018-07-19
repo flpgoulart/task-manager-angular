@@ -53,6 +53,16 @@ export class TasksComponent implements OnInit {
 
     }
 
+    public deleteTask(task: Task){
+        if (confirm(`Deseja realmente excluir a tarefa "${task.title}"`)) {
+            this.taskService.deleteTask(task.id)
+                .subscribe(
+                    () => this.tasks = this.tasks.filter(t => t !== task),
+                    () => alert("Ocorreu um erro no servidor, tente mais tarde!")
+                )
+        }
+    }
+
     // recebe um parametro do tipo Task e não retorna nada
     // public onSelect(task: Task): void {
     //     this.selectedTask = task;
