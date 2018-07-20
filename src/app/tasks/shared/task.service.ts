@@ -3,9 +3,7 @@ import { Headers, Http, Response } from "@angular/http";
 import { Injectable } from "@angular/core";
 
 import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/catch";
-import "rxjs/add/observable/throw";
+
 
 import { Task } from "./task.model";
 
@@ -63,7 +61,7 @@ export class TaskService{
             .map(() => null)
     }
 
-    public seachByTitle(term: string): Observable<Task[]> {
+    public searchByTitle(term: string): Observable<Task[]> {
         let url = `${this.tasksUrl}?title=${term}`;
 
         return this.http.get(url)

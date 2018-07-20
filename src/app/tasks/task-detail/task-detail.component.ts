@@ -5,8 +5,6 @@ import { Component, OnInit } from '@angular/core';
 // Params é para coletar os dados transferidos pela URL
 import { ActivatedRoute, Params } from "@angular/router";
 import { Location } from "@angular/common";
-// serve para implementar no route o método switchMap
-import "rxjs/add/operator/switchMap";
 
 import { Task } from '../shared/task.model';
 import { TaskService } from "../shared/task.service";
